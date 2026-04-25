@@ -1,0 +1,6 @@
+{
+  "name": "IPL 2024 Agentic RAG",
+  "description": "An agentic RAG system that reasons across IPL 2024 match stats, Wikipedia reports, and web search to answer complex queries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
