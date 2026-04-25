@@ -1,90 +1,38 @@
-# Ipl_chatbot
-🤖 Multi-LLM RAG Chatbot
-A powerful Retrieval-Augmented Generation (RAG) application built with Streamlit and LangChain. This tool allows users to upload documents (PDF, CSV, TXT, DOCX) and engage in an intelligent conversation with their data using various LLM providers like OpenAI, Google Gemini, or HuggingFace.
+IPL 2024 Agentic RAG
+An advanced AI-powered assistant designed to reason across structured match statistics, unstructured tournament reports, and real-time web data to provide comprehensive insights into the 2024 Indian Premier League.
 
-🌟 Features
-Multi-Provider Support: Choose between OpenAI, Google Generative AI, or HuggingFace Hub for your LLM and Embeddings.
+🚀 Overview
+This application implements an Agentic RAG (Retrieval-Augmented Generation) system. Unlike standard RAG which simply retrieves text, this agent uses a Thought/Action/Observation loop to decide which tool to use—be it querying a CSV database for player stats or performing a semantic search over Wikipedia text—to answer complex, multi-part questions.
 
-Versatile Document Loader: Supports .pdf, .csv, .txt, and .docx files.
+🛠️ Tech Stack
+Frontend & UI
+React 19: Modern UI development with functional components and hooks.
 
-Advanced Retrieval: Uses ChromaDB as a vector store with integrated Contextual Compression (Cohere Rerank) and redundant document filtering for more accurate answers.
+Vite: Lightning-fast build tool and development server.
 
-Conversation Memory: Remembers past interactions using ConversationSummaryBufferMemory to maintain context in long chats.
+Tailwind CSS: Utility-first CSS framework for a sleek "Neural Engine" aesthetic.
 
-Flexible UI:
+Framer Motion: Smooth animations for reasoning traces and chat transitions.
 
-Chat Mode: Standard Q&A with your documents.
+Lucide React: For clean, consistent iconography.
 
-Document Management: View uploaded files and explore the raw content of retrieved document chunks.
+AI & Agent Logic
+Google Gemini 2.0 Flash: The core "brain" used for reasoning, tool selection, and final answer synthesis.
 
-Bilingual Interface: Supports both English and French.
+Agentic Framework: A custom loop implementation supporting up to 8 reasoning steps per query.
 
-🛠️ Installation
-Clone the repository:
+Google Search Grounding: Integrated web search for real-time tournament news.
 
-Bash
-git clone <your-repository-url>
-cd <repository-folder>
-Create a virtual environment (Recommended):
+Data Processing
+Fuse.js: Lightweight fuzzy search for semantic document retrieval from unstructured text.
 
-Bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-Install dependencies:
+Papa Parse: Powerful CSV parser used to process structured match-by-match statistics.
 
-Bash
-pip install -r requirements.txt
-🚀 Usage
-Run the Streamlit app:
+🧩 Agent Capabilities
+The agent intelligently routes queries through three specialized tools:
 
-Bash
-streamlit run rag.py
-Configure the Sidebar:
+query_data: Accesses ipl_data_2024.csv to answer quantitative questions like "Who had the most wickets in Match 14?" or "How many matches did KKR win?".
 
-Select your LLM Provider (OpenAI, Google, or HuggingFace).
+search_docs: Performs semantic search on ipl_wiki_text.txt for qualitative info like rule changes (e.g., two bouncers per over) or venue details.
 
-Enter your API Key.
-
-Upload your documents (e.g., ipl2024 Matches.csv) to the Data/ folder or via the UI if implemented.
-
-Click "Process Documents" to initialize the vector database.
-
-Chat:
-
-Switch to the Chatbot tab and start asking questions about your data!
-
-📂 Project Structure
-rag.py: The main application logic, including LLM configuration, document splitting, and the Streamlit UI.
-
-requirements.txt: List of necessary Python packages (LangChain, Streamlit, ChromaDB, etc.).
-
-Data/: Directory where uploaded documents are stored for processing.
-
-DB/: Directory where the ChromaDB vector database is persisted.
-
-⚙️ Configuration
-The app utilizes several LangChain components for optimized performance:
-
-Text Splitting: RecursiveCharacterTextSplitter with a chunk size of 1000 and 200 overlap.
-
-Reranking: Uses CohereRerank (if a Cohere API key is provided) to improve the relevance of retrieved documents.
-
-Memory: ConversationSummaryBufferMemory ensures the model doesn't lose context while staying within token limits.
-
-📝 Requirements
-Major dependencies include:
-
-langchain & langchain-community
-
-streamlit
-
-chromadb
-
-langchain-openai
-
-langchain-google-genai
-
-🤝 Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-Developed with ❤️ using Streamlit and LangChain.
+web_search: Uses Gemini's search grounding to find news or context outside the provided local datasets.
